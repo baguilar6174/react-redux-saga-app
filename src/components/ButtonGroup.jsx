@@ -1,13 +1,18 @@
 import { Button } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-const ButtonGroup = () => {
+export const ButtonGroup = ({ addEntry }) => {
 	return (
 		<Button.Group style={{ marginTop: 20 }}>
 			<Button>Cancel</Button>
 			<Button.Or />
-			<Button primary>Ok</Button>
+			<Button primary onClick={() => addEntry()}>
+				Ok
+			</Button>
 		</Button.Group>
 	);
 };
 
-export default ButtonGroup;
+ButtonGroup.propTypes = {
+	addEntry: PropTypes.func.isRequired,
+};

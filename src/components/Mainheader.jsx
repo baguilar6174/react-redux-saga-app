@@ -1,7 +1,7 @@
 import { Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const Mainheader = ({ title, type }) => {
+export const Mainheader = ({ title, type }) => {
 	return (
 		<>
 			<Header as={type}>{title}</Header>
@@ -17,5 +17,3 @@ Mainheader.propTypes = {
 Mainheader.defaultProps = {
 	type: 'h3',
 };
-
-export default Mainheader;

@@ -1,16 +1,17 @@
 import { Grid, Segment } from 'semantic-ui-react';
-import DisplayBalance from './DisplayBalance';
+import { DisplayBalance } from './';
+import PropTypes from 'prop-types';
 
-const DisplayBalances = () => {
+export const DisplayBalances = ({ totalIncome, totalExpense }) => {
 	return (
 		<Segment textAlign='center'>
 			<Grid columns={2} divided>
 				<Grid.Row>
 					<Grid.Column>
-						<DisplayBalance color='green' title='Income' value={1502} />
+						<DisplayBalance color='green' title='Income' value={totalIncome} />
 					</Grid.Column>
 					<Grid.Column>
-						<DisplayBalance color='red' title='Expenses' value={85} />
+						<DisplayBalance color='red' title='Expenses' value={totalExpense} />
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
@@ -18,4 +19,7 @@ const DisplayBalances = () => {
 	);
 };
 
-export default DisplayBalances;
+DisplayBalances.propTypes = {
+	totalIncome: PropTypes.number.isRequired,
+	totalExpense: PropTypes.number.isRequired,
+};

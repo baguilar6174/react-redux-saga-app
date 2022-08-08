@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Statistic } from 'semantic-ui-react';
 
-const DisplayBalance = ({ title, value, color, size }) => {
+export const DisplayBalance = ({ title, value, color, size }) => {
 	return (
 		<Statistic size={size} color={color}>
 			<Statistic.Label style={{ textAlign: 'left' }}>{title}:</Statistic.Label>
@@ -22,5 +22,3 @@ DisplayBalance.defaultProps = {
 	color: 'black',
 	size: 'tiny',
 };
-
-export default DisplayBalance;
