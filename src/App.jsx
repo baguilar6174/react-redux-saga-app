@@ -53,9 +53,9 @@ function App() {
 		let totalExpenses = 0;
 		entries.map((entry) => {
 			if (entry.isExpense) {
-				return (totalExpenses += entry.value);
+				return (totalExpenses += Number(entry.value));
 			}
-			return (totalIncomes += entry.value);
+			return (totalIncomes += Number(entry.value));
 		});
 		setTotal(totalIncomes - totalExpenses);
 		setExpenseTotal(totalExpenses);
