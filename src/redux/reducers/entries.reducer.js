@@ -14,13 +14,13 @@ const reducer = (state = initialEntries, action) => {
 
 const initialEntries = [
 	{
-		id: 1,
+		id: '1',
 		description: 'Description 1',
 		value: 500,
 		isExpense: false,
 	},
 	{
-		id: 2,
+		id: '2',
 		description: 'Description 32',
 		value: 5400,
 		isExpense: true,

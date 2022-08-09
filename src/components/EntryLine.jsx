@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { Grid, Icon, Segment } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
+import { removeEntryRedux } from '../redux/actions/entries.action';
 
 export const EntryLine = ({
 	id,
 	isExpense,
 	description,
 	value,
-	deleteEntry,
 	updateEntry,
 }) => {
+	const dispatch = useDispatch();
+
 	return (
 		<>
 			<Segment color={isExpense ? 'red' : 'green'}>
@@ -22,7 +25,11 @@ export const EntryLine = ({
 						</Grid.Column>
 						<Grid.Column width={3}>
 							<Icon name='edit' bordered onClick={() => updateEntry(id)} />
-							<Icon name='trash' bordered onClick={() => deleteEntry(id)} />
+							<Icon
+								name='trash'
+								bordered
+								onClick={() => dispatch(removeEntryRedux(id))}
+							/>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
@@ -35,8 +42,7 @@ EntryLine.propTypes = {
 	value: PropTypes.number,
 	isExpense: PropTypes.bool,
 	description: PropTypes.string.isRequired,
-	id: PropTypes.number.isRequired,
-	deleteEntry: PropTypes.func.isRequired,
+	id: PropTypes.string.isRequired,
 	updateEntry: PropTypes.func.isRequired,
 };
 

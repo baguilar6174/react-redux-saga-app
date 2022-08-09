@@ -1,12 +1,7 @@
-export const addEntryRedux = () => {
+export const addEntryRedux = (payload) => {
 	return {
 		type: 'ADD_ENTRY',
-		payload: {
-			id: 10,
-			description: 'Hello fromn redux',
-			value: 15,
-			isExpense: false,
-		},
+		payload,
 	};
 };
 

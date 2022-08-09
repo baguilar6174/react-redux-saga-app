@@ -9,24 +9,9 @@ import {
 	NewEntryForm,
 	ModalEdit,
 } from './components';
-
-const initialEntries = [
-	{
-		id: 1,
-		description: 'Description 1',
-		value: 500,
-		isExpense: false,
-	},
-	{
-		id: 2,
-		description: 'Description 32',
-		value: 5400,
-		isExpense: true,
-	},
-];
+import { useSelector } from 'react-redux';
 
 function App() {
-	const [entries, setEntries] = useState(initialEntries);
 	const [description, setDescription] = useState('');
 	const [value, setValue] = useState(0);
 	const [isExpense, setIsExpense] = useState(true);
@@ -35,6 +20,7 @@ function App() {
 	const [incomeTotal, setIncomeTotal] = useState(0);
 	const [expenseTotal, setExpenseTotal] = useState(0);
 	const [total, setTotal] = useState(0);
+	const entries = useSelector((state) => state.entries);
 
 	useEffect(() => {
 		if (!isOpen && entryId) {
@@ -43,7 +29,7 @@ function App() {
 			newEntries[index].description = description;
 			newEntries[index].value = value;
 			newEntries[index].isExpense = isExpense;
-			setEntries(newEntries);
+			// setEntries(newEntries);
 			resetEntry();
 		}
 	}, [isOpen]);
@@ -68,24 +54,6 @@ function App() {
 		setIsExpense(true);
 	};
 
-	const deleteEntry = (id) => {
-		const result = entries.filter((entry) => entry.id !== id);
-		setEntries(result);
-	};
-
-	const addEntry = () => {
-		setEntries([
-			...entries,
-			{
-				id: entries.length + 1,
-				description,
-				value,
-				isExpense,
-			},
-		]);
-		resetEntry();
-	};
-
 	const updateEntry = (id) => {
 		console.log('object');
 		if (id) {
@@ -105,21 +73,9 @@ function App() {
 			<DisplayBalance size='small' title='Your Balance' value={total} />
 			<DisplayBalances totalIncome={incomeTotal} totalExpense={expenseTotal} />
 			<Mainheader title='History' />
-			<EntryLines
-				entries={entries}
-				deleteEntry={deleteEntry}
-				updateEntry={updateEntry}
-			/>
+			<EntryLines entries={entries} updateEntry={updateEntry} />
 			<Mainheader title='Add new transation' />
-			<NewEntryForm
-				addEntry={addEntry}
-				description={description}
-				setDescription={setDescription}
-				value={value}
-				setValue={setValue}
-				isExpense={isExpense}
-				setIsExpense={setIsExpense}
-			/>
+			<NewEntryForm />
 			<ModalEdit
 				isOpen={isOpen}
 				setIsOpen={setIsOpen}
