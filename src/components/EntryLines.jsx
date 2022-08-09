@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { EntryLine } from './';
 
-export const EntryLines = ({ entries, updateEntry }) => {
+export const EntryLines = ({ entries }) => {
 	return (
 		<>
 			{entries.map((entry) => (
-				<EntryLine key={entry.id} {...entry} updateEntry={updateEntry} />
+				<EntryLine key={entry.id} {...entry} />
 			))}
 		</>
 	);
@@ -13,7 +13,6 @@ export const EntryLines = ({ entries, updateEntry }) => {
 
 EntryLines.propTypes = {
 	entries: PropTypes.array,
-	updateEntry: PropTypes.func.isRequired,
 };
 
 EntryLines.defaultProps = {

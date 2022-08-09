@@ -12,27 +12,18 @@ import {
 import { useSelector } from 'react-redux';
 
 function App() {
-	const [description, setDescription] = useState('');
-	const [value, setValue] = useState(0);
-	const [isExpense, setIsExpense] = useState(true);
-	const [isOpen, setIsOpen] = useState(false);
-	const [entryId, setEntryId] = useState();
 	const [incomeTotal, setIncomeTotal] = useState(0);
 	const [expenseTotal, setExpenseTotal] = useState(0);
 	const [total, setTotal] = useState(0);
+	const [entry, setEntry] = useState();
+
 	const entries = useSelector((state) => state.entries);
+	const { isOpen, id } = useSelector((state) => state.modals);
 
 	useEffect(() => {
-		if (!isOpen && entryId) {
-			const index = entries.findIndex((entry) => entry.id === entryId);
-			const newEntries = [...entries];
-			newEntries[index].description = description;
-			newEntries[index].value = value;
-			newEntries[index].isExpense = isExpense;
-			// setEntries(newEntries);
-			resetEntry();
-		}
-	}, [isOpen]);
+		const index = entries.findIndex((entry) => entry.id === id);
+		setEntry(entries[index]);
+	}, [isOpen, id]);
 
 	useEffect(() => {
 		let totalIncomes = 0;
@@ -48,44 +39,16 @@ function App() {
 		setIncomeTotal(totalIncomes);
 	}, [entries]);
 
-	const resetEntry = () => {
-		setDescription('');
-		setValue(0);
-		setIsExpense(true);
-	};
-
-	const updateEntry = (id) => {
-		console.log('object');
-		if (id) {
-			const index = entries.findIndex((entry) => entry.id === id);
-			const entry = entries[index];
-			setEntryId(id);
-			setDescription(entry.description);
-			setValue(entry.value);
-			setIsExpense(entry.isExpense);
-			setIsOpen(true);
-		}
-	};
-
 	return (
 		<Container>
 			<Mainheader title='Budget' type='h1' />
 			<DisplayBalance size='small' title='Your Balance' value={total} />
 			<DisplayBalances totalIncome={incomeTotal} totalExpense={expenseTotal} />
 			<Mainheader title='History' />
-			<EntryLines entries={entries} updateEntry={updateEntry} />
+			<EntryLines entries={entries} />
 			<Mainheader title='Add new transation' />
 			<NewEntryForm />
-			<ModalEdit
-				isOpen={isOpen}
-				setIsOpen={setIsOpen}
-				description={description}
-				setDescription={setDescription}
-				value={value}
-				setValue={setValue}
-				isExpense={isExpense}
-				setIsExpense={setIsExpense}
-			/>
+			<ModalEdit isOpen={isOpen} {...entry} />
 		</Container>
 	);
 }

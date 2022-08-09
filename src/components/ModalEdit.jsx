@@ -1,35 +1,32 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Button, Modal } from 'semantic-ui-react';
+import { useEntryDetails } from '../hooks/useEntryDetails';
+import { closeEditModal } from '../redux/actions/modals.action';
 import { EntryForm } from './EntryForm';
 
-export const ModalEdit = ({
-	isOpen,
-	setIsOpen,
-	description,
-	setDescription,
-	value,
-	setValue,
-	isExpense,
-	setIsExpense,
-}) => {
+export const ModalEdit = ({ isOpen, description, value, isExpense, id }) => {
+	const dispatch = useDispatch();
+	const entryUpdate = useEntryDetails(description, value, isExpense);
+
 	return (
 		<Modal open={isOpen}>
 			<Modal.Header>Edit entry</Modal.Header>
 			<Modal.Content>
 				<EntryForm
-					description={description}
-					setDescription={setDescription}
-					value={value}
-					setValue={setValue}
-					isExpense={isExpense}
-					setIsExpense={setIsExpense}
+					description={entryUpdate.description}
+					setDescription={entryUpdate.setDescription}
+					value={entryUpdate.value}
+					setValue={entryUpdate.setValue}
+					isExpense={entryUpdate.isExpense}
+					setIsExpense={entryUpdate.setIsExpense}
 				/>
 			</Modal.Content>
 			<Modal.Actions>
-				<Button color='red' onClick={() => setIsOpen(false)}>
+				<Button color='red' onClick={() => dispatch(closeEditModal())}>
 					Close
 				</Button>
-				<Button primary onClick={() => setIsOpen(false)}>
+				<Button primary onClick={() => entryUpdate.updateEntry(id)}>
 					Ok
 				</Button>
 			</Modal.Actions>
@@ -39,11 +36,8 @@ export const ModalEdit = ({
 
 ModalEdit.propTypes = {
 	isOpen: PropTypes.bool.isRequired,
-	setIsOpen: PropTypes.func.isRequired,
-	description: PropTypes.string.isRequired,
-	setDescription: PropTypes.func.isRequired,
-	value: PropTypes.number.isRequired,
-	setValue: PropTypes.func.isRequired,
-	isExpense: PropTypes.bool.isRequired,
-	setIsExpense: PropTypes.func.isRequired,
+	description: PropTypes.string,
+	value: PropTypes.number,
+	isExpense: PropTypes.bool,
+	id: PropTypes.string,
 };

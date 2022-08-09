@@ -2,14 +2,9 @@ import PropTypes from 'prop-types';
 import { Grid, Icon, Segment } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { removeEntryRedux } from '../redux/actions/entries.action';
+import { openEditModal } from '../redux/actions/modals.action';
 
-export const EntryLine = ({
-	id,
-	isExpense,
-	description,
-	value,
-	updateEntry,
-}) => {
+export const EntryLine = ({ id, isExpense, description, value }) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -24,7 +19,11 @@ export const EntryLine = ({
 							${value}
 						</Grid.Column>
 						<Grid.Column width={3}>
-							<Icon name='edit' bordered onClick={() => updateEntry(id)} />
+							<Icon
+								name='edit'
+								bordered
+								onClick={() => dispatch(openEditModal(id))}
+							/>
 							<Icon
 								name='trash'
 								bordered
@@ -43,7 +42,6 @@ EntryLine.propTypes = {
 	isExpense: PropTypes.bool,
 	description: PropTypes.string.isRequired,
 	id: PropTypes.string.isRequired,
-	updateEntry: PropTypes.func.isRequired,
 };
 
 EntryLine.defaultProps = {
