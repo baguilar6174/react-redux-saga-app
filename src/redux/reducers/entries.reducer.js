@@ -5,10 +5,10 @@ const reducer = (state = initialEntries, action) => {
 	switch (action.type) {
 		case types.GET_ENTRIES_SUCCESS:
 			return action.payload;
-		case types.ADD_ENTRY:
+		case types.ADD_ENTRY_SUCCESS:
 			newEntries = state.concat({ ...action.payload });
 			return newEntries;
-		case types.REMOVE_ENTRY:
+		case types.REMOVE_ENTRY_SUCCESS:
 			newEntries = state.filter((entry) => entry.id !== action.payload.id);
 			return newEntries;
 		case types.POPULATE_ENTRY_DETAILS:
