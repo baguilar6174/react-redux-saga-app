@@ -1,15 +1,24 @@
 {
   "entries": [
     {
-      "id": "bd6c29e7-fd9e-4846-89e6-94f7996686d9",
-      "description": "hola"
+      "id": "aa8469d9-a5f1-4593-af65-5d9c78c93140",
+      "description": "New expense"
+    },
+    {
+      "id": "b4949e8e-5be3-47b7-bbd7-f21f4ea37049",
+      "description": "New income"
     }
   ],
   "values": [
     {
-      "id": "bd6c29e7-fd9e-4846-89e6-94f7996686d9",
+      "id": "aa8469d9-a5f1-4593-af65-5d9c78c93140",
       "isExpense": true,
-      "value": 4545
+      "value": 500
+    },
+    {
+      "id": "b4949e8e-5be3-47b7-bbd7-f21f4ea37049",
+      "isExpense": false,
+      "value": 700
     }
   ]
 }
