@@ -2,13 +2,21 @@
 	"entries": [
 		{
 			"id": "1",
-			"description": "Description 1",
+			"description": "Description 1"
+		},
+		{
+			"id": "2",
+			"description": "Description 32"
+		}
+	],
+	"values": [
+		{
+			"id": "1",
 			"value": 500,
 			"isExpense": false
 		},
 		{
 			"id": "2",
-			"description": "Description 32",
 			"value": 5400,
 			"isExpense": true
 		}

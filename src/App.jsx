@@ -9,7 +9,8 @@ import {
 	NewEntryForm,
 	ModalEdit,
 } from './components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllEntriesRedux } from './redux/actions/entries.action';
 
 function App() {
 	const [incomeTotal, setIncomeTotal] = useState(0);
@@ -20,10 +21,12 @@ function App() {
 	const entries = useSelector((state) => state.entries);
 	const { isOpen, id } = useSelector((state) => state.modals);
 
+	const dispatch = useDispatch();
+
 	useEffect(() => {
 		const index = entries.findIndex((entry) => entry.id === id);
 		setEntry(entries[index]);
-	}, [isOpen, id]);
+	}, [isOpen, id, entries]);
 
 	useEffect(() => {
 		let totalIncomes = 0;
@@ -38,6 +41,10 @@ function App() {
 		setExpenseTotal(totalExpenses);
 		setIncomeTotal(totalIncomes);
 	}, [entries]);
+
+	useEffect(() => {
+		dispatch(getAllEntriesRedux());
+	}, [dispatch]);
 
 	return (
 		<Container>
