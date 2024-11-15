@@ -47,12 +47,12 @@ Run the app
 yarn run start:all
 ```
 
-## Author
-
-- Website - [www.bryan-aguilar.com](https://www.bryan-aguilar.com/)
-- Medium - [baguilar6174](https://baguilar6174.medium.com/)
-- LinkeIn - [baguilar6174](https://www.linkedin.com/in/baguilar6174)
-
 ## Budget App
 
 ![budget app](./media/budget_app.png)
+
+## Stay in touch
+
+- Website - [www.bryan-aguilar.com](https://www.bryan-aguilar.com/)
+- Medium - [baguilar6174](https://baguilar6174.medium.com/)
+- LinkedIn - [baguilar6174](https://www.linkedin.com/in/baguilar6174)
